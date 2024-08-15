@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  port: 5436
+  username: postgres
+  password: postgres
+  database: datyle_api_development
