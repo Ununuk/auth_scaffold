@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  defaults format: :json do
+    devise_for :users, path: "", path_names: {
+      sign_in: "login",
+      sign_out: "logout",
+      registration: "signup"
+    }, controllers: {
+      sessions: "users/sessions",
+      registrations: "users/registrations"
+    }
+  end
 end
