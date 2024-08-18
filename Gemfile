@@ -9,6 +9,9 @@ gem "devise"
 gem "devise-jwt"
 gem "fast_jsonapi"
 
+gem "activeadmin"
+gem "sass-rails"
+
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
@@ -17,5 +20,6 @@ group :development, :test do
   gem "dotenv"
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
+  gem "pry"
   gem "rubocop-rails-omakase", require: false
 end

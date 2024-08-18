@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   defaults format: :json do
     devise_for :users, path: "", path_names: {
       sign_in: "login",
@@ -18,5 +21,7 @@ Rails.application.routes.draw do
       sessions: "users/sessions",
       registrations: "users/registrations"
     }
+
+    resources :tests, only: :index
   end
 end
