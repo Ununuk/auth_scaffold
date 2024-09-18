@@ -114,7 +114,7 @@ GEM
     devise-jwt (0.12.1)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.10)
-    dotenv (3.1.2)
+    dotenv (3.1.4)
     drb (2.2.1)
     dry-auto_inject (1.0.1)
       dry-core (~> 1.0)
