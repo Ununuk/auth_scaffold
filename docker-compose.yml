@@ -1,0 +1,18 @@
+services:
+  database:
+    image: postgres
+    container_name: auth_scaffold_database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=auth_scaffold_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+  mailhog:
+    image: mailhog/mailhog
+    container_name: auth_scaffold_mailhog
+    ports:
+      - "8025:8025"
+      - "1025:1025"

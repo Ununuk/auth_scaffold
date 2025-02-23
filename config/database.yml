@@ -1,9 +1,15 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
   host: localhost
-  port: 5436
+  port: 5432
   username: postgres
   password: postgres
-  database: datyle_api_development
+
+development:
+  <<: *default
+  database: auth_scaffold_development
+test:
+  <<: *default
+  database: auth_scaffold_test
