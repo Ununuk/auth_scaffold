@@ -1,0 +1,22 @@
+name: Rubocop & brakeman
+
+on: [ pull_request ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop with reviewdog
+        run: bundle exec rubocop
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager

@@ -1,0 +1,39 @@
+name: RSpec tests
+
+on: [push]
+
+jobs:
+  rspec_tests:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://postgres:password@localhost:5432/rails_test"
+      DEVISE_JWT_SECRET_KEY: 534d74417e1bdbf4d05bfeb593191dd380c4d9c500f230b74ef4fd2c055d8d9d70f1f552c17ee1162a5a2982c1041090d8cbfe0fde2a539e1dcd6b20a98c7393
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      - name: Run Tests
+        run: bundle exec rspec
