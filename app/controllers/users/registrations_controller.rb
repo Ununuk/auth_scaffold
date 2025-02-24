@@ -1,15 +1,15 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    respond_to :json
-    skip_before_action :verify_authenticity_token
+    include DeviseableJsonApi
+    include JsonRenderable
 
     private
 
     def respond_with(current_user, _opts = {})
       if resource.persisted?
-        render json: UserSerializer.new(current_user).serialized_json, status: :created
+        render_json(current_user, serializer: UserSerializer, status: :created)
       else
-        render json: { error: current_user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+        render_error(current_user.errors.full_messages)
       end
     end
   end
