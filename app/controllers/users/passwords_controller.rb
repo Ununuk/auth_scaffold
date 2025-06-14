@@ -19,15 +19,24 @@ module Users
 
     def update
       self.resource = resource_class.reset_password_by_token(resource_params)
+      process_password_reset
+    end
 
+    private
+
+    def process_password_reset
       if resource.errors.empty?
-        resource.unlock_access! if unlockable?(resource)
-        resource.after_database_authentication
-        sign_in(resource_name, resource)
-        render_json({ message: "Password has been reset" })
+        handle_successful_reset
       else
         render_error(resource.errors.full_messages)
       end
+    end
+
+    def handle_successful_reset
+      resource.unlock_access! if unlockable?(resource)
+      resource.after_database_authentication
+      sign_in(resource_name, resource)
+      render_json({ message: "Password has been reset" })
     end
   end
 end
