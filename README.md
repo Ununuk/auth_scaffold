@@ -1,6 +1,6 @@
 # Auth Scaffold
 
-Auth Scaffold is a Rails API application template that integrates authentication using Devise, Devise-JWT, and ActiveAdmin. It's configured for deployment on Heroku and is built with Ruby 3.4.2 and Rails 8.0.1.
+Auth Scaffold is a Rails API application template that integrates authentication using Devise, Devise-JWT, and ActiveAdmin. It's configured for deployment on Heroku and is built with Ruby 3.4.4 and Rails 8.0.2.
 
 ## Features
 
@@ -11,8 +11,8 @@ Auth Scaffold is a Rails API application template that integrates authentication
 
 ## Prerequisites
 
-- **Ruby**: Version 3.4.2
-- **Rails**: Version 8.0.1
+- **Ruby**: Version 3.4.4
+- **Rails**: Version 8.0.2
 - **Docker**: For containerized development and deployment
 - **PostgreSQL**: As the primary database
 
